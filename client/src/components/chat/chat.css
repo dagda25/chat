@@ -1,0 +1,21 @@
+.chat {
+	display: flex;
+	flex-direction: column;
+	background-color: #def3ff;
+	width: 70%;
+	max-height: 100vh;
+
+
+}
+
+.chat-list {
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
+}
+
+@media screen and (max-width: 1024px) {
+	.chat {
+		width: 100%;
+	}
+}

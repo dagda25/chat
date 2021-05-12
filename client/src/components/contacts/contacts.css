@@ -1,0 +1,15 @@
+.contacts {
+	width: 30%;
+	background-color: #178fd4;
+	color: #fff;
+}
+
+.contacts .contacts-list {
+	margin: 20px;
+	list-style: none;
+}
+
+.contacts .contacts-header {
+	font-size: 16px;
+	margin: 20px auto;
+}

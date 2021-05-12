@@ -1,0 +1,194 @@
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+article > * + * {
+  margin-top: 1em;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: rgba(246, 255, 255, .5)
+}
+
+.page {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.title {
+  display: block;
+  margin: 0 auto 20px;
+  font-size: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.table {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+.table-main {
+  width: 100%;
+  max-width: 800px;
+}
+
+.table-search {
+  width: 300px;
+  height: 40px;
+  margin: 0 0 20px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+
+.table-header th {
+  padding: 10px 5px;
+  border: 1px solid black;
+
+}
+
+.table .table-header {
+  border-bottom : 1px solid black;
+  background-color: #ccc;
+}
+
+.table td {
+  padding: 5px 5px;
+  border-right: 1px solid #000;
+}
+
+
+.table-row-year {
+  font-weight: bold;
+  border: 2px solid black;
+}
+
+td svg {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+tr:nth-child(2n + 1) {
+  background-color: #eee;
+}
+
+.recharts-responsive-container {
+  min-height: 500px !important;
+  max-height: 800px !important;
+}
+
+
+@media screen and (max-width: 1023px) {
+
+  .table-detail {
+      width: 100%;
+      border-collapse: collapse;
+      border-spacing: 0;
+      display: block;
+      position: relative;
+  }
+  .table-detail td, .table-detail th {
+      display: block;
+      min-height: 1.25em;
+      height: 40px;
+      text-align: left;
+      padding: 10px;
+  }
+
+  .table-detail td,
+  .table-detail th,
+  .table-detail .table-header {
+    border: none;
+  }
+
+  .table-detail thead tr {
+    display: block;
+    padding: 0;
+  }
+
+  .table-detail thead {
+    display: block;
+    float: left;
+  }
+
+  .table-detail tbody {
+      display: block;
+      width: auto;
+      position: relative;
+      overflow-x: auto;
+      white-space: nowrap;
+  }
+
+  .table-detail tbody tr {
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .table-main {
+    width: 100%;
+    min-width: none;
+  }
+}
