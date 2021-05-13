@@ -9,9 +9,7 @@ import {fetchContacts, fetchChat} from "../../store/api-actions";
 const Contacts = ({ contacts }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  /*const { userId, email, token } = useSelector((state) => {
-    return state.APP.user;
-  });*/
+
   const email = localStorage.getItem('email');
   const userId = localStorage.getItem('userId');
   const token = localStorage.getItem('token');
@@ -23,12 +21,19 @@ const Contacts = ({ contacts }) => {
     if (!userId) {
       history.push(`/login`);
     }
-    
+
   }, []);
 
   useEffect(() => {
     store.dispatch(fetchContacts(token));
+
   }, []);
+
+  useEffect(() => {
+    contacts.forEach((contact) => {
+      store.dispatch(fetchChat(userId, token, { receiverId: contact._id, email: contact.email }));
+    })
+  }, [contacts]);
 
   if (!contacts || !contacts.length) {
     return <div>no contacts</div>;

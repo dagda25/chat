@@ -3,5 +3,9 @@
 	flex-direction: row;
 	flex-wrap: nowrap;
 	width: 1024px;
-	margin: 0 auto;
+	height: 94vh;
+	max-height: 94vh;
+	margin: 3vh auto;
+	border-radius: 10px;
+	box-shadow: 0px 0px 15px -5px rgba(34, 60, 80, 0.6);
 }

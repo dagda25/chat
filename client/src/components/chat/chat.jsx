@@ -17,6 +17,16 @@ const Chat = ({messages, userId, receiverId, email, token}) => {
   const chatList = useRef(null);
   const dispatch = useDispatch();
 
+  
+  useEffect(() => {
+    console.log(userId, receiverId);
+    const socket = io();
+    socket.addEventListener(`connect`, () => {
+      dispatch(ActionCreator.addSocket(socket.id));
+    });
+
+  }, []);
+
 
   useEffect(() => {
     if (messages.length <= 20) {
@@ -29,16 +39,6 @@ const Chat = ({messages, userId, receiverId, email, token}) => {
   }, [userId, receiverId, email, token]);
 
 
-  useEffect(() => {
-    console.log(userId, receiverId);
-    const socket = io();
-    //socket.on('ROOM:SET_USERS', setUsers);
-    //socket.on('ROOM:NEW_MESSAGE', addMessage);
-    socket.addEventListener(`connect`, () => {
-      dispatch(ActionCreator.addSocket(socket.id));
-    });
-
-  }, []);
 
   useEffect(() => {
     console.log(userId, receiverId);
