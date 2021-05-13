@@ -1,24 +1,33 @@
 import React, {useEffect} from "react";
 import './contacts.css';
-import { connect, useSelector } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 import {useHistory } from 'react-router-dom';
 import store from "../../store/store";
+import {ActionCreator} from "../../store/action";
 import {fetchContacts, fetchChat} from "../../store/api-actions";
 
 const Contacts = ({ contacts }) => {
   const history = useHistory();
-  const { userId, email } = useSelector((state) => {
+  const dispatch = useDispatch();
+  /*const { userId, email, token } = useSelector((state) => {
     return state.APP.user;
-  });
+  });*/
+  const email = localStorage.getItem('email');
+  const userId = localStorage.getItem('userId');
+  const token = localStorage.getItem('token');
   useEffect(() => {
+
+    if (email && userId && token) {
+      dispatch(ActionCreator.setUser({email, userId, token}));
+    }
     if (!userId) {
       history.push(`/login`);
     }
     
-  }, [userId]);
+  }, []);
 
   useEffect(() => {
-    store.dispatch(fetchContacts());
+    store.dispatch(fetchContacts(token));
   }, []);
 
   if (!contacts || !contacts.length) {
@@ -26,7 +35,7 @@ const Contacts = ({ contacts }) => {
   }
 
   const handleContactClick = (evt) => {
-    store.dispatch(fetchChat(userId, { receiverId: evt.target.dataset.id, email: evt.target.dataset.email }));
+    store.dispatch(fetchChat(userId, token, { receiverId: evt.target.dataset.id, email: evt.target.dataset.email }));
   }
 
   return (

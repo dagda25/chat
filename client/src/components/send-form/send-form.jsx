@@ -7,7 +7,7 @@ import store from "../../store/store";
 
 
 const SendForm = ({send}) => {
-  const { userId } = useSelector((state) => {
+  const { userId, token } = useSelector((state) => {
     return state.APP.user;
   });
 
@@ -18,8 +18,7 @@ const SendForm = ({send}) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     const message = new FormData(evt.target).get(`message`);
-    console.log(message, userId, receiverId)
-    store.dispatch(sendMessage(message, userId, receiverId));
+    store.dispatch(sendMessage(message, userId, receiverId, token));
   };
 
 

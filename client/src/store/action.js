@@ -7,7 +7,8 @@ export const ActionType = {
   GET_CONTACTS: `GET_CONTACTS`,
   GET_CHAT: `GET_CHAT`,
   ADD_MESSAGE: `ADD_MESSAGE`,
-  ADD_SOCKET: `ADD_SOCKET`
+  ADD_SOCKET: `ADD_SOCKET`,
+  SET_USER: `SET_USER`
 };
 
 export const ActionCreator = {
@@ -32,6 +33,10 @@ export const ActionCreator = {
     payload: data
   }),
   login: (data) => ({
+    type: ActionType.LOGIN,
+    payload: data
+  }),
+  setUser: (data) => ({
     type: ActionType.LOGIN,
     payload: data
   }),

@@ -11,6 +11,7 @@ const LoginPage = () => {
   const isLogged = useSelector((state) => {
     return state.APP.isLogged;
   });
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     const email = new FormData(evt.target).get('login');

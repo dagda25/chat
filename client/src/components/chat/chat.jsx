@@ -8,18 +8,10 @@ import store from "../../store/store";
 import {io} from "socket.io-client";
 import './chat.css';
 
-const Chat = ({messages, userId, receiverId, email}) => {
-
-  /*const {userId} = useSelector((state) => {
-    return state.APP.user;
-  });
-
-  const {receiverId, email} = useSelector((state) => {
-    return state.APP.receiver;
-  });*/
+const Chat = ({messages, userId, receiverId, email, token}) => {
 
   const handleShowMoreClick = (length) => {
-    store.dispatch(fetchChat(userId, {receiverId, email}, length + 10));
+    store.dispatch(fetchChat(userId, token, {receiverId, email}, length + 10));
   };
 
   const chatList = useRef(null);
@@ -33,22 +25,29 @@ const Chat = ({messages, userId, receiverId, email}) => {
   }, [messages]);
 
   const handleMessage = useCallback((data) => {
-    store.dispatch(fetchChat(userId, {receiverId: data.receiver, email}));
-  }, []);
+    store.dispatch(fetchChat(userId, token, {receiverId, email}));
+  }, [userId, receiverId, email, token]);
 
-  /*const handleMessage = (data) => {
-    store.dispatch(fetchChat(userId, {receiverId: data.receiver, email}));
-  }*/
 
   useEffect(() => {
     console.log(userId, receiverId);
     const socket = io();
-    socket.addEventListener(`comment`, handleMessage);
+    //socket.on('ROOM:SET_USERS', setUsers);
+    //socket.on('ROOM:NEW_MESSAGE', addMessage);
     socket.addEventListener(`connect`, () => {
       dispatch(ActionCreator.addSocket(socket.id));
     });
 
   }, []);
+
+  useEffect(() => {
+    console.log(userId, receiverId);
+    const socket = io();
+    socket.addEventListener(`comment`, handleMessage);
+    return () => {
+      socket.removeEventListener(`comment`, handleMessage);
+    }
+  }, [userId, receiverId, email, token]);
 
 
   return (
@@ -72,6 +71,7 @@ const Chat = ({messages, userId, receiverId, email}) => {
 const mapStateToProps = ({APP}) => ({
   messages: APP.messages,
   userId: APP.user.userId,
+  token: APP.user.token,
   receiverId: APP.receiver.receiverId,
   email: APP.receiver.email
 });
