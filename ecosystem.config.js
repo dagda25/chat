@@ -1,13 +1,12 @@
 module.exports = {
   apps : [{
-    name: "app",
-    script: "./app.js",
-    instances: "max",
+    script: 'app.js',
+    name: 'chat',
+    watch: true,
     env: {
-      NODE_ENV: "development",
+        PORT: 4444,
     },
-    env_production: {
-      NODE_ENV: "production",
-    }
-  }]
-}
+    max_memory_restart: '12M',
+    exec_mode: 'fork'
+  }],
+};
