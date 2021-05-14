@@ -1,0 +1,39 @@
+.send-panel {
+  width: 100%;
+  padding: 20px 0;
+  background: #000080;
+
+}
+
+.send-panel .send-form {
+  margin: 0 auto;
+  min-height: 20px;
+  padding: 0 20px;
+}
+
+.send-form .send-input {
+  min-height: 80px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 3px 7px;
+  border-radius: 10px;  
+}
+
+.send-form .send-button {
+  background: #fff;
+  color: #000080;
+  margin-top: 10px;
+  padding: 5px 20px;
+  border: 2px solid #000080;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.send-form .send-button:hover,
+.send-form .send-button:active {
+  background: #c0c0c0;
+  color: #000
+}
+
+
