@@ -33,6 +33,7 @@ const LoginPage = () => {
         <input type="password" name='password'/>password
         <button type="submit">Login</button>
       </form>
+      <div>Еще нет аккаунта?<a href="/register">Зарегистрироваться</a></div>
     </>
 
   );
