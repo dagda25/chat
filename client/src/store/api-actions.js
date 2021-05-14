@@ -1,9 +1,11 @@
 import {ActionCreator} from "./action";
 import axios from "axios";
 
+const backendUrl = `https://dagda25-chat.herokuapp.com`;
+
 
 export const sendMessage = (message, userId, receiverId, token) => (dispatch, _getState) => {
-  axios.post(`http://localhost:5000/api/send`, {message, userId, receiverId}, {
+  axios.post(`${backendUrl}api/send`, {message, userId, receiverId}, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
@@ -18,7 +20,7 @@ export const sendMessage = (message, userId, receiverId, token) => (dispatch, _g
 
 
 export const fetchChat = (userId, token, {receiverId, email}, limit) => (dispatch, _getState) => {
-  axios.post(`http://localhost:5000/api/chat`, {userId, receiverId, limit}, {
+  axios.post(`${backendUrl}/api/chat`, {userId, receiverId, limit}, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
@@ -32,14 +34,14 @@ export const fetchChat = (userId, token, {receiverId, email}, limit) => (dispatc
 };
 
 export const register = (data) => (dispatch, _getState) => {
-  axios.post(`http://localhost:5000/api/auth/register`, data)
+  axios.post(`${backendUrl}api/auth/register`, data)
     .then((response) => {
       dispatch(ActionCreator.register(response.data));
     });
 };
 
 export const login = (data) => (dispatch, _getState) => {
-  axios.post(`http://localhost:5000/api/auth/login`, data)
+  axios.post(`${backendUrl}api/auth/login`, data)
     .then((response) => {
       localStorage.setItem(`email`, response.data.email);
       localStorage.setItem(`token`, response.data.token);
@@ -53,7 +55,7 @@ export const login = (data) => (dispatch, _getState) => {
 };
 
 export const fetchContacts = (token) => (dispatch, _getState) => {
-  axios.get(`http://localhost:5000/api/users`, {
+  axios.get(`${backendUrl}api/users`, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
