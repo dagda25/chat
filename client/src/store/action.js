@@ -2,6 +2,7 @@ export const ActionType = {
   GET_DATA: `GET_DATA`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
   LOGIN: `LOGIN`,
+  LOGOUT: `LOGOUT`,
   REGISTER: `REGISTER`,
   SEND: `SEND`,
   GET_CONTACTS: `GET_CONTACTS`,
@@ -34,6 +35,10 @@ export const ActionCreator = {
   }),
   login: (data) => ({
     type: ActionType.LOGIN,
+    payload: data
+  }),
+  logout: (data) => ({
+    type: ActionType.LOGOUT,
     payload: data
   }),
   setUser: (data) => ({

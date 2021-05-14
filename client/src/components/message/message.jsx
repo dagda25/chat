@@ -8,8 +8,8 @@ const Message = ({message, userId}) => {
 
   return (
     <div className={userId === message.author ? `message message-sent` : `message message-received`}>
-      {message.message}
-      <span>{new Date(message.date).toLocaleTimeString()}</span>
+      {message.message}<br/>
+      <span className="message-date">{new Date(message.date).toLocaleTimeString()}</span>
     </div>
   );
 };

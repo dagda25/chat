@@ -4,6 +4,7 @@ import { sendMessage } from "../../store/api-actions";
 import { connect } from "react-redux";
 import { useSelector } from 'react-redux';
 import store from "../../store/store";
+import './send-form.css';
 
 
 const SendForm = ({send}) => {
@@ -23,10 +24,13 @@ const SendForm = ({send}) => {
 
 
   return (
-    <form action="/" encType="multipart/form-data" onSubmit={handleSubmit}>
-      <input type="text" name="message"/>
-      <button type="submit">send</button>
-    </form>
+    <section className="send-panel">
+      <form action="/" encType="multipart/form-data" onSubmit={handleSubmit} className="send-form">
+        <textarea name="message" className="send-input"/>
+        <button type="submit" className="send-button">Отправить</button>
+      </form>
+    </section>
+
   );
 };
 

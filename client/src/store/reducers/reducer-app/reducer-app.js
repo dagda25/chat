@@ -38,6 +38,11 @@ const reducerApp = (state = initialState, action) => {
         user: action.payload,
         isLogged: true
       });
+    case ActionType.LOGOUT:
+      return Object.assign({}, state, {
+        user: {},
+        isLogged: false
+      });
     case ActionType.SET_USER:
       return Object.assign({}, state, {
         user: action.payload,

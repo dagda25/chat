@@ -3,8 +3,7 @@
 	flex-direction: column;
 	background-color: #def3ff;
 	width: 70%;
-	height: 90vh;
-	max-height: 90vh;
+	max-height: 100vh;
 
 
 }
@@ -14,6 +13,33 @@
 	flex-direction: column;
 	flex-grow: 1;
 	overflow: auto;
+}
+
+.chat-header {
+	width: 100%;
+	background: #000080;
+	color: #fff;
+	text-align: center;
+	font-size: 16px;
+	padding: 20px 0 20px;
+}
+
+.chat .show-more {
+	margin: 20px auto;
+	padding: 5px 20px;
+	background: #000080;
+	border: 2px solid #000080;
+	color: #fff;
+	font-weight: bold;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.chat .show-more:hover,
+.chat .show-more:active {
+	background: #ffffff;
+	color: #000080;
+	font-weight: bold;
 }
 
 @media screen and (max-width: 1024px) {

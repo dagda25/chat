@@ -8,6 +8,19 @@
 
 }
 
+.message-date {
+	text-align: right;
+	font-size: 12px;
+}
+
+.message-sent .message-date {
+	color: #c9c9c9;
+}
+
+.message-received .message-date {
+	color: #505050;
+}
+
 .message-sent {
 	align-self: flex-start;
 	text-align: left;

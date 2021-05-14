@@ -53,7 +53,7 @@ const Chat = ({messages, userId, receiverId, email, token}) => {
   return (
     <>
       <section className="chat">
-        <div className="chat-header">{email}</div>
+        <div className="chat-header">Чат с {email}</div>
         <div className="chat-list" ref={chatList}>
           {messages.length > 19 && <div className="show-more" onClick={() => handleShowMoreClick(messages.length)}>Показать еще</div>}
           {

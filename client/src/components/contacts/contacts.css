@@ -9,9 +9,25 @@
 	list-style: none;
 }
 
+.contacts .contacts-item {
+	cursor: pointer;
+}
+
 .contacts .contacts-header {
+	width: 100%;
+	background: #000080;
+	color: #fff;
+	text-align: center;
 	font-size: 16px;
-	margin: 20px auto;
+	padding: 20px 0 20px;
+}
+
+.contacts-logout {
+	margin-left: 15px;
+	color: #c0c0c0;
+	text-align: right;
+	font-size: 14px;	
+	cursor: pointer;
 }
 
 @media screen and (max-width: 640px) {
