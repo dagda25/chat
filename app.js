@@ -46,7 +46,10 @@ async function start() {
     io.on(`connection`, (socket) => {
       console.log('connected ', socket.id)
       const sessionID = socket.id;
+
       socket.on(`comment`, (data) => {
+        console.log('data ', data);
+        //const user = await User.findById(receiverId);
         socket.broadcast.emit(`comment`, data);
       });
     });

@@ -24,6 +24,10 @@
 	padding: 20px 0 20px;
 }
 
+.chat-back {
+	display: none;
+}
+
 .chat .show-more {
 	margin: 20px auto;
 	padding: 5px 20px;
@@ -42,8 +46,33 @@
 	font-weight: bold;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 640px) {
+	.chat--mobile-hidden {
+		display: none;
+	}
+	
 	.chat {
 		width: 100%;
+	}
+
+	.chat-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
+	}
+
+	.chat-back {
+		content: "";
+		width: 40px;
+		height: 40px;
+		display: block;
+		background-image: url("./assets/back.png");
+		background-size: 40px;
+		margin-left: 20px;
+		cursor: pointer;
+	}
+
+	.chat-title {
+		flex-grow: 1;
 	}
 }

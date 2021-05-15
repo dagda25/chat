@@ -8,7 +8,8 @@ import store from "../../store/store";
 import {io} from "socket.io-client";
 import './chat.css';
 
-const Chat = ({messages, userId, receiverId, email, token}) => {
+const Chat = ({ messages, userId, receiverId, email, token, showMode }) => {
+  const socket = io();
 
   const handleShowMoreClick = (length) => {
     store.dispatch(fetchChat(userId, token, {receiverId, email}, length + 10));
@@ -17,28 +18,28 @@ const Chat = ({messages, userId, receiverId, email, token}) => {
   const chatList = useRef(null);
   const dispatch = useDispatch();
 
-  const handleConnect = useCallback((socket) => {
+  const handleConnect = useCallback(() => {
     dispatch(addSocket(socket.id, userId));
   }, [userId]);
 
   
   useEffect(() => {
     console.log(userId);
-    const socket = io();
-    socket.addEventListener(`connect`, handleConnect(socket));
+    //const socket = io();
+    socket.addEventListener(`connect`, () => handleConnect());
 
     return () => {
-      socket.removeEventListener(`connect`, handleConnect(socket));
+      socket.removeEventListener(`connect`, handleConnect());
     };
 
-  }, [userId, token]);
+  }, [userId]);
 
 
   useEffect(() => {
     if (messages.length <= 20) {
       chatList.current.scrollTop = chatList.current.scrollHeight;
     }
-  }, [messages]);
+  }, [messages, showMode]);
 
   const handleMessage = useCallback((data) => {
     store.dispatch(fetchChat(userId, token, {receiverId, email}));
@@ -48,18 +49,24 @@ const Chat = ({messages, userId, receiverId, email, token}) => {
 
   useEffect(() => {
     console.log(userId, receiverId);
-    const socket = io();
+    //const socket = io();
     socket.addEventListener(`comment`, handleMessage);
     return () => {
       socket.removeEventListener(`comment`, handleMessage);
     }
   }, [userId, receiverId, email, token]);
 
+  const showContacts = () => {
+    dispatch(ActionCreator.changeShowMode(`contacts`));
+  };
 
   return (
     <>
-      <section className="chat">
-        <div className="chat-header">Чат с {email}</div>
+      <section className={showMode === `chat` ? `chat` : `chat chat--mobile-hidden`}>
+        <div className="chat-header">
+          <div className="chat-back" onClick={showContacts}></div>
+          <div className="chat-title">Чат с {email}</div>
+        </div>
         <div className="chat-list" ref={chatList}>
           {messages.length > 19 && <div className="show-more" onClick={() => handleShowMoreClick(messages.length)}>Показать еще</div>}
           {
@@ -79,7 +86,8 @@ const mapStateToProps = ({APP}) => ({
   userId: APP.user.userId,
   token: APP.user.token,
   receiverId: APP.receiver.receiverId,
-  email: APP.receiver.email
+  email: APP.receiver.email,
+  showMode: APP.showMode
 });
 
 export default connect(mapStateToProps)(Chat);

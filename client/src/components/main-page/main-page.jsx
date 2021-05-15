@@ -10,7 +10,7 @@ const MainPage = ({}) => {
 	return (
 		<main className="main-page">
 			<Contacts/>
-		    <Chat/>
+		  <Chat/>
 		</main>
 
 	);

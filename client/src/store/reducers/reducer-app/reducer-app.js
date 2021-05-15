@@ -14,7 +14,8 @@ const initialState = {
   contacts: [
 
   ],
-  socket: ``
+  socket: ``,
+  showMode: `chat`
 };
 
 
@@ -62,7 +63,11 @@ const reducerApp = (state = initialState, action) => {
       });
     case ActionType.ADD_SOCKET:
       return Object.assign({}, state, {
-        socket: action.payload
+        socket: action.payload.socketId
+      });
+    case ActionType.CHANGE_SHOW_MODE:
+      return Object.assign({}, state, {
+        showMode: action.payload
       });
     default:
       return state;

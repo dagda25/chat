@@ -36,4 +36,16 @@
   color: #000
 }
 
+@media screen and (max-width: 640px) {
+  .send-form .send-input {
+    min-height: 50px;
+    font-size: 14px; 
+  }
+
+  .send-form .send-button {
+    padding: 3px 15px;
+    font-size: 14px;
+  }
+}
+
 

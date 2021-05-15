@@ -9,7 +9,8 @@ export const ActionType = {
   GET_CHAT: `GET_CHAT`,
   ADD_MESSAGE: `ADD_MESSAGE`,
   ADD_SOCKET: `ADD_SOCKET`,
-  SET_USER: `SET_USER`
+  SET_USER: `SET_USER`,
+  CHANGE_SHOW_MODE: `CHANGE_SHOW_MODE`
 };
 
 export const ActionCreator = {
@@ -56,5 +57,9 @@ export const ActionCreator = {
   redirectToRoute: (url) => ({
     type: ActionType.REDIRECT_TO_ROUTE,
     payload: url,
+  }),
+  changeShowMode: (data) => ({
+    type: ActionType.CHANGE_SHOW_MODE,
+    payload: data
   }),
 };

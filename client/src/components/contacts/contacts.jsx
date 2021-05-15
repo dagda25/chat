@@ -6,7 +6,7 @@ import store from "../../store/store";
 import {ActionCreator} from "../../store/action";
 import {fetchContacts, fetchChat} from "../../store/api-actions";
 
-const Contacts = ({contacts}) => {
+const Contacts = ({contacts, showMode}) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -51,9 +51,16 @@ const Contacts = ({contacts}) => {
     dispatch(ActionCreator.redirectToRoute(`/login`));
   };
 
+  const showChat = () => {
+    dispatch(ActionCreator.changeShowMode(`chat`));
+  };
+
   return (
-    <section className="contacts">
-      <div className="contacts-header">{email}<span className="contacts-logout" onClick={handleLogoutClick}>Выход</span></div>
+    <section className={showMode === `chat` ? `contacts contacts--mobile-hidden` : `contacts`}>
+      <div className="contacts-header">
+        <div className="contacts-title">{email}<span className="contacts-logout" onClick={handleLogoutClick}>Выход</span></div>
+        <div className="contacts-forward" onClick={showChat}></div>
+      </div>
       <ul className="contacts-list">
         {contacts.map((contact) => {
           if (contact._id !== userId) {
@@ -69,7 +76,7 @@ const Contacts = ({contacts}) => {
 
 const mapStateToProps = ({APP}) => ({
   contacts: APP.contacts,
-
+  showMode: APP.showMode
 });
 
 export default connect(mapStateToProps)(Contacts);

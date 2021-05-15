@@ -31,8 +31,32 @@
 }
 
 @media screen and (max-width: 640px) {
+	.contacts--mobile-hidden {
+		display: none;
+	}
+
 	.contacts {
 		width: 100%;
-		display: none;
+	}
+
+	.contacts-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
+	}
+
+	.contacts-forward {
+		content: "";
+		width: 40px;
+		height: 40px;
+		display: block;
+		background-image: url("./assets/right.png");
+		background-size: 40px;
+		margin-right: 20px;
+		cursor: pointer;
+	}
+
+	.contacts-title {
+		flex-grow: 1;
 	}
 }
