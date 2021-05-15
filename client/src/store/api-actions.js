@@ -40,6 +40,13 @@ export const register = (data) => (dispatch, _getState) => {
     });
 };
 
+export const addSocket = (socketId, userId) => (dispatch, _getState) => {
+  axios.post(`${backendUrl}/api/socket`, {socketId, userId})
+    .then(() => {
+      dispatch(ActionCreator.addSocket(socketId));
+    });
+};
+
 export const login = (data) => (dispatch, _getState) => {
   axios.post(`${backendUrl}/api/auth/login`, data)
     .then((response) => {

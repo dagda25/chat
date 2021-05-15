@@ -1,9 +1,9 @@
 import React, {useEffect, useRef, useCallback} from "react";
 import Message from "../message/message";
 import SendForm from "../send-form/send-form";
-import {ActionCreator} from "../../store/action";
+import { ActionCreator } from "../../store/action";
 import {connect, useSelector, useDispatch} from "react-redux";
-import {fetchChat} from "../../store/api-actions";
+import {fetchChat, addSocket} from "../../store/api-actions";
 import store from "../../store/store";
 import {io} from "socket.io-client";
 import './chat.css';
@@ -22,7 +22,7 @@ const Chat = ({messages, userId, receiverId, email, token}) => {
     console.log(userId, receiverId);
     const socket = io();
     socket.addEventListener(`connect`, () => {
-      dispatch(ActionCreator.addSocket(socket.id));
+      dispatch(addSocket(socket.id, userId));
     });
 
   }, []);

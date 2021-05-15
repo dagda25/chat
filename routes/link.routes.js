@@ -51,6 +51,24 @@ router.post('/chat', auth, async (req, res) => {
   }
 })
 
+router.post('/socket', auth, async (req, res) => {
+  try {
+    const { socketId, userId } = req.body;
+    console.log("api/socket body:", req.body)
+
+    const user = await User.findById(userId);
+
+    if (user) {
+      await User.updateOne({ _id: userId }, { socketId: socketId });
+    }
+
+    res.status(201).json({ socketId })
+  } catch (e) {
+    console.log(e.message)
+    res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+  }
+})
+
 router.get('/users', auth, async (req, res) => {
   try {
     const users = await User.find()
