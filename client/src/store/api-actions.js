@@ -40,8 +40,12 @@ export const register = (data) => (dispatch, _getState) => {
     });
 };
 
-export const addSocket = (socketId, userId) => (dispatch, _getState) => {
-  axios.post(`${backendUrl}/api/socket`, {socketId, userId})
+export const addSocket = (socketId, userId, token) => (dispatch, _getState) => {
+  axios.post(`${backendUrl}/api/socket`, {socketId, userId}, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
     .then(() => {
       dispatch(ActionCreator.addSocket(socketId));
     });
