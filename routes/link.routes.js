@@ -51,7 +51,7 @@ router.post('/chat', auth, async (req, res) => {
   }
 })
 
-router.post('/socket', auth, async (req, res) => {
+router.post('/socket', async (req, res) => {
   try {
     const { socketId, userId } = req.body;
     console.log("api/socket body:", req.body)

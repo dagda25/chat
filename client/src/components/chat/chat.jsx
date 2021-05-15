@@ -17,15 +17,21 @@ const Chat = ({messages, userId, receiverId, email, token}) => {
   const chatList = useRef(null);
   const dispatch = useDispatch();
 
+  const handleConnect = useCallback((socket) => {
+    dispatch(addSocket(socket.id, userId));
+  }, [userId]);
+
   
   useEffect(() => {
-    console.log(userId, receiverId);
+    console.log(userId);
     const socket = io();
-    socket.addEventListener(`connect`, () => {
-      dispatch(addSocket(socket.id, userId));
-    });
+    socket.addEventListener(`connect`, handleConnect(socket));
 
-  }, []);
+    return () => {
+      socket.removeEventListener(`connect`, handleConnect(socket));
+    };
+
+  }, [userId, token]);
 
 
   useEffect(() => {
