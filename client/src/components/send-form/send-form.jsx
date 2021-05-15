@@ -19,7 +19,9 @@ const SendForm = ({send}) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     const message = new FormData(evt.target).get(`message`);
-    store.dispatch(sendMessage(message, userId, receiverId, token));
+    if (message) {
+      store.dispatch(sendMessage(message, userId, receiverId, token));
+    }
   };
 
 

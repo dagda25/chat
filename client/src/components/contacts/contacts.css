@@ -30,6 +30,14 @@
 	cursor: pointer;
 }
 
+.contacts-loader {
+	width: 60px;
+	height: 60px;
+	margin: 60px auto;
+	background-image: url("./assets/1495.gif");
+	background-size: 60px;
+}
+
 @media screen and (max-width: 640px) {
 	.contacts--mobile-hidden {
 		display: none;

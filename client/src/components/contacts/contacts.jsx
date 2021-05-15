@@ -38,10 +38,6 @@ const Contacts = ({contacts, showMode}) => {
     });
   }, [contacts]);
 
-  if (!contacts || !contacts.length) {
-    return <div>no contacts</div>;
-  }
-
   const handleContactClick = (evt) => {
     store.dispatch(fetchChat(userId, token, {receiverId: evt.target.dataset.id, email: evt.target.dataset.email}));
   };
@@ -61,14 +57,19 @@ const Contacts = ({contacts, showMode}) => {
         <div className="contacts-title">{email}<span className="contacts-logout" onClick={handleLogoutClick}>Выход</span></div>
         <div className="contacts-forward" onClick={showChat}></div>
       </div>
-      <ul className="contacts-list">
-        {contacts.map((contact) => {
-          if (contact._id !== userId) {
-            return <li key={contact._id} data-id={contact._id} data-email={contact.email} onClick={handleContactClick} className="contacts-item">{contact.email}</li>;
-          }
+      {contacts ?
+        <ul className="contacts-list">
+          {contacts.map((contact) => {
+            if (contact._id !== userId) {
+              return <li key={contact._id} data-id={contact._id} data-email={contact.email} onClick={handleContactClick} className="contacts-item">{contact.email}</li>;
+            }
 
-        })}
-      </ul>
+          })}
+        </ul> :
+        <div className="contacts-loader"></div>
+      }
+
+
     </section>
   );
 };
