@@ -1,7 +1,7 @@
 import {ActionCreator} from "./action";
 import axios from "axios";
 
-const backendUrl = `http://localhost:5000`//`https://dagda25-chat.herokuapp.com`;
+const backendUrl = /*`http://localhost:5000`*/`https://dagda25-chat.herokuapp.com`;
 
 
 export const sendMessage = (message, userId, receiverId, token) => (dispatch, _getState) => {
