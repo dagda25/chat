@@ -45,6 +45,14 @@
 		border-top-left-radius: 0;
 	}
 
+	.message-sent {
+		border-top-left-radius: 0;
+	}
+
+	.message-received {
+		border-top-right-radius: 0;
+	}
+
 	.message-date {
 		font-size: 10px;
 	}
