@@ -29,6 +29,7 @@ const LoginPage = () => {
 
   return (
     <section className="login-section">
+      <h2 className="login-title">Вход</h2>
       <form action="/" encType="multipart/form-data" onSubmit={handleSubmit} className="login-form">
         <input type="text" name='login' className="login-input-login" placeholder="Введите логин"/>
         <input type="password" name='password' className="login-input-password" placeholder="Введите пароль"/>

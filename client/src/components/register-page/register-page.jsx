@@ -15,6 +15,7 @@ const RegisterPage = ({ }) => {
 
   return (
     <section className="register-section">
+      <h2 className="register-title">Регистрация</h2>
       <form action="/" encType="multipart/form-data" onSubmit={handleSubmit} className="register-form">
         <input type="text" name='login' className="register-login"/>
         <input type="password" name='password' className="register-password"/>
