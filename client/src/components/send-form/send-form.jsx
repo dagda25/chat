@@ -30,6 +30,7 @@ const SendForm = ({send}) => {
       <form action="/" encType="multipart/form-data" onSubmit={handleSubmit} className="send-form">
         <textarea name="message" className="send-input"/>
         <button type="submit" className="send-button">Отправить</button>
+        <button type="submit" className="send-button-mobile"></button>
       </form>
     </section>
 
