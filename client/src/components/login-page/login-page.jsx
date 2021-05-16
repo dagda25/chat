@@ -5,6 +5,7 @@ import {ActionCreator} from "../../store/action";
 import { connect } from "react-redux";
 import { login } from "../../store/api-actions";
 import store from "../../store/store";
+import './login-page.css';
 
 const LoginPage = () => {
   const history = useHistory();
@@ -27,14 +28,14 @@ const LoginPage = () => {
   }, [isLogged]);
 
   return (
-    <>
-      <form action="/" encType="multipart/form-data" onSubmit={handleSubmit}>
-        <input type="text" name='login'/>login
-        <input type="password" name='password'/>password
-        <button type="submit">Login</button>
+    <section className="login-section">
+      <form action="/" encType="multipart/form-data" onSubmit={handleSubmit} className="login-form">
+        <input type="text" name='login' className="login-input-login" placeholder="Введите логин"/>
+        <input type="password" name='password' className="login-input-password" placeholder="Введите пароль"/>
+        <button type="submit" className="login-button">Войти</button>
       </form>
-      <div>Еще нет аккаунта?<a href="/register">Зарегистрироваться</a></div>
-    </>
+      <div className="login-no-account">Еще нет аккаунта?<br/><a href="/register" className="login-no-account-link">Зарегистрироваться</a></div>
+    </section>
 
   );
 };

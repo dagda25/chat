@@ -3,6 +3,7 @@ import {ActionCreator} from "../../store/action";
 import { connect } from "react-redux";
 import { register } from "../../store/api-actions";
 import store from "../../store/store";
+import './register-page.css';
 
 const RegisterPage = ({ }) => {
   const handleSubmit = (evt) => {
@@ -13,13 +14,14 @@ const RegisterPage = ({ }) => {
   }
 
   return (
-    <>
-      <form action="/" encType="multipart/form-data" onSubmit={handleSubmit}>
-        <input type="text" name='login'/>login
-        <input type="password" name='password'/>password
-        <button type="submit">Register</button>
+    <section className="register-section">
+      <form action="/" encType="multipart/form-data" onSubmit={handleSubmit} className="register-form">
+        <input type="text" name='login' className="register-login"/>
+        <input type="password" name='password' className="register-password"/>
+        <button type="submit" className="register-button">Зарегистрироваться</button>
       </form>
-    </>
+      <div className="register-already">Уже зарегистрированы?<br/><a href="/login" className="register-already-link">Войти</a></div>
+    </section>
 
   );
 };
