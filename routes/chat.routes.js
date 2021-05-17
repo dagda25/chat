@@ -64,9 +64,11 @@ router.post('/socket', async (req, res) => {
   }
 });
 
-router.get('/users', auth, async (req, res) => {
+router.post('/users', auth, async (req, res) => {
   try {
+    const { userId } = req.body;
     const users = await User.find().select('_id email');
+    console.log(users)
     res.json({ users });
   } catch (e) {
     res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' });

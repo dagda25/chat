@@ -25,7 +25,7 @@ const Contacts = ({contacts, showMode}) => {
   }, []);
 
   useEffect(() => {
-    store.dispatch(fetchContacts(token));
+    store.dispatch(fetchContacts(token, userId));
 
   }, []);
 

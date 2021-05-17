@@ -62,8 +62,8 @@ export const login = (data) => (dispatch, _getState) => {
     });
 };
 
-export const fetchContacts = (token) => (dispatch, _getState) => {
-  axios.get(`${backendUrl}/api/users`, {
+export const fetchContacts = (token, userId) => (dispatch, _getState) => {
+  axios.post(`${backendUrl}/api/users`, {userId}, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
