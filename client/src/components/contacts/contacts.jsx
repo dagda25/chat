@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import './contacts.css';
-import {connect, useSelector, useDispatch} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {useHistory} from 'react-router-dom';
 import store from "../../store/store";
 import {ActionCreator} from "../../store/action";

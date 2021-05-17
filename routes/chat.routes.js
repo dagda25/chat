@@ -51,7 +51,7 @@ router.post('/socket', async (req, res) => {
   try {
     const { socketId, userId } = req.body;
 
-    const user = await User.findById(userId);
+    const user = await User.findById(userId).select('_id email');
 
     if (user) {
       await User.updateOne({ _id: userId }, { socketId: socketId });
