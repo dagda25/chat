@@ -7,8 +7,8 @@ import store from "../../store/store";
 import './send-form.css';
 
 
-const SendForm = ({send}) => {
-  const { userId, token } = useSelector((state) => {
+const SendForm = () => {
+  const {userId, token} = useSelector((state) => {
     return state.APP.user;
   });
 
@@ -40,10 +40,5 @@ const SendForm = ({send}) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  send() {
-	  dispatch(ActionCreator.send());
-  },
-});
 
-export default connect(null, mapDispatchToProps)(SendForm);
+export default SendForm;

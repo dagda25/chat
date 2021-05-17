@@ -1,17 +1,17 @@
 import React from "react";
 import {ActionCreator} from "../../store/action";
-import { connect } from "react-redux";
-import { register } from "../../store/api-actions";
+import {connect} from "react-redux";
+import {register} from "../../store/api-actions";
 import store from "../../store/store";
 import './register-page.css';
 
-const RegisterPage = ({ }) => {
+const RegisterPage = () => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    const email = new FormData(evt.target).get('login');
-    const password = new FormData(evt.target).get('password');
+    const email = new FormData(evt.target).get(`login`);
+    const password = new FormData(evt.target).get(`password`);
     store.dispatch(register({email, password}));
-  }
+  };
 
   return (
     <section className="register-section">

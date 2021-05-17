@@ -1,7 +1,6 @@
 
 import React from "react";
 import {Switch, Route, Router} from "react-router-dom";
-import {connect} from "react-redux";
 import MainPage from "../main-page/main-page";
 import LoginPage from "../login-page/login-page";
 import RegisterPage from "../register-page/register-page";
@@ -44,19 +43,4 @@ const App = () => {
   );
 };
 
-App.propTypes = {
-
-};
-
-const mapStateToProps = ({APP}) => ({
-  items: APP.items,
-  currentItem: APP.currentItem,
-});
-
-const mapDispatchToProps = () => ({
-
-});
-
-export {App};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
-
+export default App;

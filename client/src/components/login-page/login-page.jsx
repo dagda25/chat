@@ -1,9 +1,9 @@
-import React, { useEffect} from "react";
-import { useSelector } from 'react-redux';
-import {useHistory } from 'react-router-dom';
+import React, {useEffect} from "react";
+import {useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 import {ActionCreator} from "../../store/action";
-import { connect } from "react-redux";
-import { login } from "../../store/api-actions";
+import {connect} from "react-redux";
+import {login} from "../../store/api-actions";
 import store from "../../store/store";
 import './login-page.css';
 
@@ -15,10 +15,10 @@ const LoginPage = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    const email = new FormData(evt.target).get('login');
-    const password = new FormData(evt.target).get('password');
+    const email = new FormData(evt.target).get(`login`);
+    const password = new FormData(evt.target).get(`password`);
     store.dispatch(login({email, password}));
-  }
+  };
 
   useEffect(() => {
     if (isLogged) {

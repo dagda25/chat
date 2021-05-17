@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useCallback} from "react";
 import Message from "../message/message";
 import SendForm from "../send-form/send-form";
 import { ActionCreator } from "../../store/action";
-import {connect, useSelector, useDispatch} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {fetchChat, addSocket} from "../../store/api-actions";
 import store from "../../store/store";
 import {io} from "socket.io-client";
@@ -22,10 +22,8 @@ const Chat = ({ messages, userId, receiverId, email, token, showMode }) => {
     dispatch(addSocket(socket.id, userId));
   }, [userId]);
 
-  
+
   useEffect(() => {
-    console.log(userId);
-    //const socket = io();
     socket.addEventListener(`connect`, () => handleConnect());
 
     return () => {
@@ -41,15 +39,12 @@ const Chat = ({ messages, userId, receiverId, email, token, showMode }) => {
     }
   }, [messages, showMode]);
 
-  const handleMessage = useCallback((data) => {
+  const handleMessage = useCallback(() => {
     store.dispatch(fetchChat(userId, token, {receiverId, email}));
   }, [userId, receiverId, email, token]);
 
 
-
   useEffect(() => {
-    console.log(userId, receiverId);
-    //const socket = io();
     socket.addEventListener(`comment`, handleMessage);
     return () => {
       socket.removeEventListener(`comment`, handleMessage);
@@ -71,7 +66,7 @@ const Chat = ({ messages, userId, receiverId, email, token, showMode }) => {
           {messages.length > 19 && <div className="show-more" onClick={() => handleShowMoreClick(messages.length)}>Показать еще</div>}
           {
             messages.map((message) => {
-              return <Message message={message} userId={userId} />;
+              return <Message message={message} userId={userId} key={message._id} />;
             })
           }
         </div>
