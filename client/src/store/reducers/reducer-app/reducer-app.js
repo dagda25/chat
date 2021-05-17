@@ -18,6 +18,20 @@ const initialState = {
   showMode: `chat`
 };
 
+const sortContacts = (contacts) => {
+  const sorted = contacts.sort((a, b) => {
+    if (!a.messages[0]) {
+      return 1;
+    }
+
+    if (!b.messages[0]) {
+      return -1;
+    }
+    return new Date(b.messages[0].date) - new Date(a.messages[0].date);
+  });
+  return sorted;
+};
+
 
 const reducerApp = (state = initialState, action) => {
   switch (action.type) {
@@ -27,7 +41,7 @@ const reducerApp = (state = initialState, action) => {
       });
     case ActionType.GET_CONTACTS:
       return Object.assign({}, state, {
-        contacts: action.payload,
+        contacts: sortContacts(action.payload),
       });
     case ActionType.GET_CHAT:
       return Object.assign({}, state, {

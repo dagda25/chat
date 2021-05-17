@@ -67,9 +67,15 @@ router.post('/socket', async (req, res) => {
 router.post('/users', auth, async (req, res) => {
   try {
     const { userId } = req.body;
+    const user = await User.findById(userId);
     const users = await User.find().select('_id email');
-    console.log(users)
-    res.json({ users });
+    const usersWithMessages = await Promise.all(users.map(async (user) => {
+      const userWithMessage = JSON.parse(JSON.stringify(user));
+      userWithMessage.messages = await Message.find({ $or: [{ author: user._id, receiver: userId }, { author: userId, receiver: user._id }] }).sort({ date: -1 }).limit(20);
+      return await userWithMessage;
+    })) 
+
+    res.json({users: usersWithMessages});
   } catch (e) {
     res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' });
   }

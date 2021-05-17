@@ -1,7 +1,7 @@
 import {ActionCreator} from "./action";
 import axios from "axios";
 
-const backendUrl = `https://dagda25-chat.herokuapp.com`;
+const backendUrl = `http://localhost:5000`//`https://dagda25-chat.herokuapp.com`;
 
 
 export const sendMessage = (message, userId, receiverId, token) => (dispatch, _getState) => {
@@ -40,6 +40,7 @@ export const register = (data) => (dispatch, _getState) => {
       dispatch(ActionCreator.register(response.data));
     });
 };
+
 
 export const addSocket = (socketId, userId) => (dispatch, _getState) => {
   axios.post(`${backendUrl}/api/socket`, {socketId, userId})

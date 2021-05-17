@@ -30,12 +30,16 @@ const Contacts = ({contacts, showMode}) => {
   }, []);
 
   useEffect(() => {
-    contacts.forEach((contact) => {
+    /*contacts.forEach((contact) => {
       if (userId !== contact._id) {
         store.dispatch(fetchChat(userId, token, {receiverId: contact._id, email: contact.email}));
       }
       
-    });
+    });*/
+    if (contacts[0]) {
+      store.dispatch(fetchChat(userId, token, {receiverId: contacts[0]._id, email: contacts[0].email}));
+    }
+    
   }, [contacts]);
 
   const handleContactClick = (evt) => {
