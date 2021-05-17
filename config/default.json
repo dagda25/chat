@@ -1,6 +1,0 @@
-{
-  "port": 5000,
-  "jwtSecret": "chat dagda25",
-  "mongoUri": "mongodb+srv://dagda25:wSe65qdm13xLvBoH@cluster0.mp25c.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-  "baseUrl": "http://localhost:5000"
-}
