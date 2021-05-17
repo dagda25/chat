@@ -51,7 +51,7 @@ router.post('/socket', async (req, res) => {
   try {
     const { socketId, userId } = req.body;
 
-    const user = await User.findById(userId).select('_id email');
+    const user = await User.findById(userId);
 
     if (user) {
       await User.updateOne({ _id: userId }, { socketId: socketId });
@@ -66,7 +66,7 @@ router.post('/socket', async (req, res) => {
 
 router.get('/users', auth, async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await User.find().select('_id email');
     res.json({ users });
   } catch (e) {
     res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' });
