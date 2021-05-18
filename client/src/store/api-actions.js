@@ -39,6 +39,10 @@ export const register = (data) => (dispatch, _getState) => {
   axios.post(`${backendUrl}/api/auth/register`, data)
     .then((response) => {
       dispatch(ActionCreator.register(response.data));
+    })
+    .catch((e) => {
+      localStorage.setItem(`registererror`, e.message);
+      dispatch(ActionCreator.redirectToRoute(`/register`));
     });
 };
 

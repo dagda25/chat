@@ -17,8 +17,8 @@ const RegisterPage = () => {
     <section className="register-section">
       <h2 className="register-title">Регистрация</h2>
       <form action="/" encType="multipart/form-data" onSubmit={handleSubmit} className="register-form">
-        <input type="text" name='login' className="register-login"/>
-        <input type="password" name='password' className="register-password"/>
+        <input type="text" name='login' className="register-login" placeholder="Введите логин"/>
+        <input type="password" name='password' className="register-password" placeholder="Введите пароль"/>
         <button type="submit" className="register-button">Зарегистрироваться</button>
       </form>
       <div className="register-already">Уже зарегистрированы?<br/><a href="/login" className="register-already-link">Войти</a></div>
