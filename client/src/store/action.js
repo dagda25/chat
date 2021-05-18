@@ -10,6 +10,7 @@ export const ActionType = {
   ADD_MESSAGE: `ADD_MESSAGE`,
   ADD_SOCKET: `ADD_SOCKET`,
   SET_USER: `SET_USER`,
+  SET_CONTACT: `SET_CONTACT`,
   CHANGE_SHOW_MODE: `CHANGE_SHOW_MODE`
 };
 
@@ -43,7 +44,11 @@ export const ActionCreator = {
     payload: data
   }),
   setUser: (data) => ({
-    type: ActionType.LOGIN,
+    type: ActionType.SET_USER,
+    payload: data
+  }),
+  setContact: (data) => ({
+    type: ActionType.SET_CONTACT,
     payload: data
   }),
   register: (data) => ({

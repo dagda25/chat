@@ -39,8 +39,13 @@ const Chat = ({ messages, userId, receiverId, email, token, showMode }) => {
     }
   }, [messages, showMode]);
 
-  const handleMessage = useCallback(() => {
-    store.dispatch(fetchChat(userId, token, {receiverId, email}));
+  const handleMessage = useCallback((data) => {
+    if (data.receiver === userId && data.author === receiverId) {
+      store.dispatch(fetchChat(userId, token, { receiverId, email }));
+    } else if (data.receiver === userId) {
+      dispatch(ActionCreator.setContact({ contactId: data.author, unRead: true }));
+    }
+
   }, [userId, receiverId, email, token]);
 
 

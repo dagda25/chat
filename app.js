@@ -41,7 +41,7 @@ async function start() {
       useCreateIndex: true
     })
     io.on(`connection`, (socket) => {
-      console.log('connected ', socket.id)
+      console.log('connected ', socket)
       const sessionID = socket.id;
 
       socket.on(`comment`, (data) => {

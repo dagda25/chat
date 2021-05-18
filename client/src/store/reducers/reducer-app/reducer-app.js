@@ -32,6 +32,15 @@ const sortContacts = (contacts) => {
   return sorted;
 };
 
+const setContact = (state, data) => {
+  const contacts = JSON.parse(JSON.stringify(state.contacts));
+  const contact = contacts.find((c) => {
+    return c._id === data.contactId;
+  });
+  contact.unRead = data.unRead;
+  return contacts;
+};
+
 
 const reducerApp = (state = initialState, action) => {
   switch (action.type) {
@@ -62,6 +71,10 @@ const reducerApp = (state = initialState, action) => {
       return Object.assign({}, state, {
         user: action.payload,
         isLogged: true
+      });
+    case ActionType.SET_CONTACT:
+      return Object.assign({}, state, {
+        contacts: setContact(state, action.payload)
       });
     case ActionType.REGISTER:
       return Object.assign({}, state, {

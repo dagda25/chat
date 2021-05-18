@@ -6,7 +6,7 @@ import store from "../../store/store";
 import {ActionCreator} from "../../store/action";
 import {fetchContacts, fetchChat} from "../../store/api-actions";
 
-const Contacts = ({contacts, showMode}) => {
+const Contacts = ({contacts, showMode, receiverId}) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -30,13 +30,7 @@ const Contacts = ({contacts, showMode}) => {
   }, []);
 
   useEffect(() => {
-    /*contacts.forEach((contact) => {
-      if (userId !== contact._id) {
-        store.dispatch(fetchChat(userId, token, {receiverId: contact._id, email: contact.email}));
-      }
-      
-    });*/
-    if (contacts[0]) {
+    if (contacts[0] && !receiverId) {
       store.dispatch(fetchChat(userId, token, {receiverId: contacts[0]._id, email: contacts[0].email}));
     }
     
@@ -65,7 +59,7 @@ const Contacts = ({contacts, showMode}) => {
         <ul className="contacts-list">
           {contacts.map((contact) => {
             if (contact._id !== userId) {
-              return <li key={contact._id} data-id={contact._id} data-email={contact.email} onClick={handleContactClick} className="contacts-item">{contact.email}</li>;
+              return <li key={contact._id} data-id={contact._id} data-email={contact.email} onClick={handleContactClick} className={contact.unRead ? `contacts-item contacts-item-unread` : `contacts-item` }>{contact.email}</li>;
             }
 
           })}
@@ -81,7 +75,8 @@ const Contacts = ({contacts, showMode}) => {
 
 const mapStateToProps = ({APP}) => ({
   contacts: APP.contacts,
-  showMode: APP.showMode
+  showMode: APP.showMode,
+  receiverId: APP.receiver.receiverId,
 });
 
 export default connect(mapStateToProps)(Contacts);

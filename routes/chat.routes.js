@@ -22,9 +22,9 @@ router.post('/send', auth, async (req, res) => {
     await chat.save();
     const { io } = req.app.locals;
 
-    io.emit(`comment`, { message, author: author._id, receiver: receiver._id, date: Date.now() });
+    io.emit(`comment`, { message, author: author._id, receiver: receiver._id, date: chat.date });
 
-    res.status(201).json({ message, author: author._id, receiver: receiver._id, date: Date.now() });
+    res.status(201).json({ message, author: author._id, receiver: receiver._id, date: chat.date });
   } catch (e) {
     console.log(e.message);
     res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' });

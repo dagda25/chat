@@ -1,7 +1,7 @@
 import {ActionCreator} from "./action";
 import axios from "axios";
 
-const backendUrl = `http://localhost:5000`//`https://dagda25-chat.herokuapp.com`;
+const backendUrl = `https://dagda25-chat.herokuapp.com`;
 
 
 export const sendMessage = (message, userId, receiverId, token) => (dispatch, _getState) => {
@@ -28,6 +28,7 @@ export const fetchChat = (userId, token, {receiverId, email}, limit) => (dispatc
     .then((response) => {
       dispatch(ActionCreator.getChat({messages: response.data.messages, receiverId, email}));
       dispatch(ActionCreator.changeShowMode(`chat`));
+      dispatch(ActionCreator.setContact({contactId: receiverId, unRead: false}));
     })
     .catch(() => {
       dispatch(ActionCreator.redirectToRoute(`/login`));

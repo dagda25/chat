@@ -10,6 +10,20 @@
 }
 
 .contacts .contacts-item {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 10px;
+	line-height: 30px;
+	cursor: pointer;
+}
+
+.contacts .contacts-item.contacts-item-unread::after {
+	content: '';
+	width: 30px;
+	height: 30px;
+	background-image: url("./assets/message.png");
+	background-size: 30px;
 	cursor: pointer;
 }
 
