@@ -14,6 +14,7 @@ export const sendMessage = (message, userId, receiverId, token) => (dispatch, _g
       dispatch(ActionCreator.send(response.data));
     })
     .catch(() => {
+      dispatch(ActionCreator.logout());
       dispatch(ActionCreator.redirectToRoute(`/login`));
     });
 };
@@ -31,6 +32,7 @@ export const fetchChat = (userId, token, {receiverId, email}, limit) => (dispatc
       dispatch(ActionCreator.setContact({contactId: receiverId, unRead: false}));
     })
     .catch(() => {
+      dispatch(ActionCreator.logout());
       dispatch(ActionCreator.redirectToRoute(`/login`));
     });
 };
@@ -40,8 +42,7 @@ export const register = (data) => (dispatch, _getState) => {
     .then((response) => {
       dispatch(ActionCreator.register(response.data));
     })
-    .catch((e) => {
-      localStorage.setItem(`registererror`, e.message);
+    .catch(() => {
       dispatch(ActionCreator.redirectToRoute(`/register`));
     });
 };
@@ -78,6 +79,7 @@ export const fetchContacts = (token, userId) => (dispatch, _getState) => {
       dispatch(ActionCreator.getContacts(response.data.users));
     })
     .catch(() => {
+      dispatch(ActionCreator.logout());
       dispatch(ActionCreator.redirectToRoute(`/login`));
     });
 };
