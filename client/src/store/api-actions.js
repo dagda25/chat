@@ -41,6 +41,7 @@ export const register = (data) => (dispatch, _getState) => {
   axios.post(`${backendUrl}/api/auth/register`, data)
     .then((response) => {
       dispatch(ActionCreator.register(response.data));
+      dispatch(ActionCreator.redirectToRoute(`/login`));
     })
     .catch(() => {
       dispatch(ActionCreator.redirectToRoute(`/register`));
